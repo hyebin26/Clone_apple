@@ -1,11 +1,11 @@
 import React from "react";
-import { mainFirst } from "@img/main.js";
+import { mainFirst } from "@images/main.js";
+import Main from "./pages/main";
 
 function App() {
   return (
     <div className="App">
-      <h2>Hello</h2>
-      <img src={mainFirst} alt="?" />
+      <Main></Main>
     </div>
   );
 }
