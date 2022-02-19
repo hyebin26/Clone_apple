@@ -310,6 +310,7 @@ module.exports = function (webpackEnv) {
         .filter((ext) => useTypeScript || !ext.includes("ts")),
       alias: {
         "@images": path.resolve(__dirname, "../src/assets/images"),
+        "@icons": path.resolve(__dirname, "../src/assets/icons"),
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",

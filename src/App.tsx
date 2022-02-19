@@ -1,11 +1,13 @@
 import React from "react";
-import { mainFirst } from "@images/main.js";
+import { Route, Routes } from "react-router-dom";
 import Main from "./pages/main";
 
 function App() {
   return (
     <div className="App">
-      <Main></Main>
+      <Routes>
+        <Route path="/" element={<Main />} />
+      </Routes>
     </div>
   );
 }

@@ -4,8 +4,10 @@
     "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
-      "@images/*": ["./src/assets/images/*"]
+      "@images/*": ["./src/assets/images/*"],
+      "@icons/*": ["./src/assets/icons/*"]
     },
+    "typeRoots": ["./node_modules/@types", "@types"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
