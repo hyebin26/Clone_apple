@@ -55,21 +55,20 @@ function NavLink({ navContent }: { navContent: NavContentType }) {
 }
 
 const NavContainer = styled.nav`
-  height: 2.6rem;
-  background: #333333;
+  height: ${(props) => props.theme.containerSize.navSize};
+  background: ${(props) => props.theme.colors.darkGrey};
   top: 0;
   position: sticky;
+  z-index: 999;
 `;
 
 const NavIcons = styled.img`
   width: 15px;
   height: 15px;
-  filter: invert(86%) sepia(0%) saturate(823%) hue-rotate(146deg)
-    brightness(95%) contrast(91%);
+  filter: ${(props) => props.theme.colors.whiteImage};
   transition: 0.3s filter;
   &:hover {
-    filter: invert(90%) sepia(0%) saturate(46%) hue-rotate(306deg)
-      brightness(107%) contrast(94%);
+    filter: ${(props) => props.theme.colors.whiteImageHover};
   }
 `;
 
@@ -81,12 +80,12 @@ const NavListWrapper = styled.ul`
 `;
 
 const NavList = styled.li`
-  font-size: 0.7rem;
+  font-size: ${(props) => props.theme.fontSize.small};
   a {
     transition: 0.3s color;
-    color: #cacaca;
+    color: ${(props) => props.theme.colors.white};
     &: hover {
-      color: #f5f5f7;
+      color: ${(props) => props.theme.colors.whiteHover};
     }
   }
 `;
