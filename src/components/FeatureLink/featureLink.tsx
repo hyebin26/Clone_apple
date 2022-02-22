@@ -14,8 +14,7 @@ const FeatureLink = ({ text, to }: Props) => {
 const StyledLink = styled(Link)<{ to: string }>`
   color: ${(props) =>
     props.to === "/" ? props.theme.colors.linkWhite : props.theme.colors.blue};
-  z-index: 998;
-  font-size: 1.3rem;
+  font-size: ${(props) => (props.to === "/" ? "1.3rem" : "1.1rem")};
   font-weight: 600;
   padding: 0 2rem;
   &:hover {

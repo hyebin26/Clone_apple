@@ -1,5 +1,7 @@
 const fontSize = {
   small: "0.7rem",
+  largeH2: "3rem",
+  largeH3: "2rem",
 };
 const colors = {
   white: "#cacaca",
@@ -14,9 +16,17 @@ const colors = {
 };
 
 const containerSize = {
-  navSize: "2.6rem",
+  navHeight: "2.6rem",
 };
-const paddings = {};
+
+const imageHeights = {
+  mainLarge: "100vh",
+  middleLarge: "36rem",
+  subLarge: "",
+};
+const paddings = {
+  featureTextPaddingBottom: "1rem",
+};
 const margins = {};
 const devices = {
   medium: "1068px",
@@ -30,6 +40,7 @@ const theme = {
   margins,
   devices,
   containerSize,
+  imageHeights,
 };
 
 export default theme;

@@ -1,45 +1,82 @@
-import mainImage from "@images/main";
 import React from "react";
 import styled from "styled-components";
+import FeatureLink from "../FeatureLink/featureLink";
 
-type Props = {
-  children?: React.ReactNode;
-  image: string;
-  half?: boolean;
+type TextProps = {
+  padding: string;
+  children: React.ReactNode;
 };
 
-const Feature = ({ children, image, half }: Props) => {
+type Props = {
+  containerHeight: string;
+  padding: string;
+  image: string;
+  children?: React.ReactNode;
+};
+
+type ImageProps = {
+  image: string;
+  height: string;
+};
+
+const Feature = ({ containerHeight, padding, image, children }: Props) => {
   return (
-    <FeatureWrapper>
-      {children}
-      <FeatureFigureWrapper>
-        <FeatureFigure image={image} />
-      </FeatureFigureWrapper>
-    </FeatureWrapper>
+    <FeatureContainer height={containerHeight}>
+      <FeatureText padding={padding}>{children}</FeatureText>
+      <FeatureFigure image={image} height={containerHeight} />
+    </FeatureContainer>
   );
 };
 
-// children 으로 text, 이미지 크기가 half인 경우를 위해 half, image의 출처
+const FeatureText = ({ children, padding }: TextProps) => {
+  return (
+    <FeatureTextContainer padding={padding}>
+      {children}
+      <div>
+        <FeatureLink text="더 알아보기 >" to="//" />
+        <FeatureLink text="구입하기 >" to="//" />
+      </div>
+    </FeatureTextContainer>
+  );
+};
 
-const FeatureWrapper = styled.section`
+const FeatureFigure = ({ image, height }: ImageProps) => {
+  return (
+    <FeatureFigureContainer>
+      <FeatrueFigure image={image} height={height} />
+    </FeatureFigureContainer>
+  );
+};
+
+const FeatureContainer = styled.section<{ height: string }>`
   position: relative;
   width: 100%;
-  height: 100vh;
+  margin-bottom: 0.8rem;
+  height: ${(props) => props.height};
 `;
 
-const FeatureFigureWrapper = styled.div`
+const FeatureTextContainer = styled.div<{ padding: string }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: ${(props) => props.padding};
+  position: relative;
+  z-index: 998;
+`;
+
+const FeatureFigureContainer = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
 `;
 
-const FeatureFigure = styled.figure<{ image: string }>`
+const FeatrueFigure = styled.figure<{ image: string; height: string }>`
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-position: center top;
   width: 100%;
-  height: 100vh;
+  height: ${(props) => props.height};
 `;
 
 export default Feature;

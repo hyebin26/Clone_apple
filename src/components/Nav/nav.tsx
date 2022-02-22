@@ -55,7 +55,7 @@ function NavLink({ navContent }: { navContent: NavContentType }) {
 }
 
 const NavContainer = styled.nav`
-  height: ${(props) => props.theme.containerSize.navSize};
+  height: ${(props) => props.theme.containerSize.navHeight};
   background: ${(props) => props.theme.colors.darkGrey};
   top: 0;
   position: sticky;
