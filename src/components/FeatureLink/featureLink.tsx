@@ -5,16 +5,30 @@ import styled from "styled-components";
 type Props = {
   text: string;
   to: string;
+  quarter?: string;
+  greeting?: string;
 };
 
-const FeatureLink = ({ text, to }: Props) => {
-  return <StyledLink to={to}>{text}</StyledLink>;
+type LinkProps = {
+  to: string;
+  quarter?: string;
+  greeting?: string;
 };
 
-const StyledLink = styled(Link)<{ to: string }>`
+const FeatureLink = ({ text, to, quarter, greeting }: Props) => {
+  return (
+    <StyledLink to={to} quarter={quarter} greeting={greeting}>
+      {text}
+    </StyledLink>
+  );
+};
+
+const StyledLink = styled(Link)<LinkProps>`
+  font-size: 1.1 rem;
+  font-size: ${(props) => props.quarter && "0.9rem;"};
+  font-size: ${(props) => props.greeting && "1.3rem;"};
   color: ${(props) =>
-    props.to === "/" ? props.theme.colors.linkWhite : props.theme.colors.blue};
-  font-size: ${(props) => (props.to === "/" ? "1.3rem" : "1.1rem")};
+    props.greeting ? props.theme.colors.linkWhite : props.theme.colors.blue};
   font-weight: 600;
   padding: 0 2rem;
   &:hover {

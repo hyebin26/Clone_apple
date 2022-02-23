@@ -13,16 +13,27 @@ const colors = {
   darkGrey: "#333333",
   blue: "#4f94da",
   linkWhite: "#fbfcfc",
+  pink: "#e9d4d1",
+  orange: "#bf4800",
+};
+const footerColor = {
+  background: "#f5f5f7",
+  textColor: "#6e6e73",
+  borderColor: "#d2d2d7",
+  titleColor: "#1d1d1f",
+  linkColor: "#424245",
+  titleColorHover: "#000",
 };
 
 const containerSize = {
   navHeight: "2.6rem",
+  featureTextLarge: "30rem",
 };
 
 const imageHeights = {
   mainLarge: "100vh",
   middleLarge: "36rem",
-  subLarge: "",
+  subLarge: "34rem",
 };
 const paddings = {
   featureTextPaddingBottom: "1rem",
@@ -35,6 +46,7 @@ const devices = {
 
 const theme = {
   fontSize,
+  footerColor,
   colors,
   paddings,
   margins,

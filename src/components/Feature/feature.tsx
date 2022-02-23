@@ -5,6 +5,8 @@ import FeatureLink from "../FeatureLink/featureLink";
 type TextProps = {
   padding: string;
   children: React.ReactNode;
+  quarter?: string;
+  greeting?: string;
 };
 
 type Props = {
@@ -12,6 +14,8 @@ type Props = {
   padding: string;
   image: string;
   children?: React.ReactNode;
+  quarter?: string;
+  greeting?: string;
 };
 
 type ImageProps = {
@@ -19,45 +23,68 @@ type ImageProps = {
   height: string;
 };
 
-const Feature = ({ containerHeight, padding, image, children }: Props) => {
+const Feature = ({
+  containerHeight,
+  padding,
+  image,
+  children,
+  quarter,
+  greeting,
+}: Props) => {
   return (
-    <FeatureContainer height={containerHeight}>
-      <FeatureText padding={padding}>{children}</FeatureText>
-      <FeatureFigure image={image} height={containerHeight} />
+    <FeatureContainer height={containerHeight} quarter={quarter ? true : false}>
+      <FeatureText padding={padding} quarter={quarter} greeting={greeting}>
+        {children}
+      </FeatureText>
+      <FeatureImage image={image} height={containerHeight} />
     </FeatureContainer>
   );
 };
 
-const FeatureText = ({ children, padding }: TextProps) => {
+const FeatureText = ({ children, padding, quarter, greeting }: TextProps) => {
   return (
     <FeatureTextContainer padding={padding}>
       {children}
-      <div>
-        <FeatureLink text="더 알아보기 >" to="//" />
-        <FeatureLink text="구입하기 >" to="//" />
-      </div>
+      <FeatureLinkWrapper>
+        <FeatureLink
+          text={greeting ? "영화 보기" : "더 알아보기 >"}
+          to="/"
+          quarter={quarter}
+          greeting={greeting}
+        />
+        <FeatureLink
+          text={greeting ? "메이킹 필름 보기" : "구입하기 >"}
+          to="/"
+          quarter={quarter}
+          greeting={greeting}
+        />
+      </FeatureLinkWrapper>
     </FeatureTextContainer>
   );
 };
 
-const FeatureFigure = ({ image, height }: ImageProps) => {
+const FeatureImage = ({ image, height }: ImageProps) => {
   return (
     <FeatureFigureContainer>
-      <FeatrueFigure image={image} height={height} />
+      <FeatureFigure image={image} height={height} />
     </FeatureFigureContainer>
   );
 };
 
-const FeatureContainer = styled.section<{ height: string }>`
+const FeatureContainer = styled.section<{ height: string; quarter: boolean }>`
   position: relative;
   width: 100%;
   margin-bottom: 0.8rem;
   height: ${(props) => props.height};
+  flex: ${(props) => props.quarter && "0 0 49%"};
 `;
 
 const FeatureTextContainer = styled.div<{ padding: string }>`
   display: flex;
   flex-direction: column;
+  width: ${(props) => props.theme.containerSize.featureTextLarge};
+  z-index: 998;
+  margin: 0 auto;
   align-items: center;
   padding-top: ${(props) => props.padding};
   position: relative;
@@ -71,12 +98,16 @@ const FeatureFigureContainer = styled.div`
   top: 0;
 `;
 
-const FeatrueFigure = styled.figure<{ image: string; height: string }>`
+const FeatureFigure = styled.figure<{ image: string; height: string }>`
   background-image: url("${(props) => props.image}");
   background-repeat: no-repeat;
   background-position: center top;
   width: 100%;
   height: ${(props) => props.height};
+`;
+
+const FeatureLinkWrapper = styled.div`
+  padding-top: 1rem;
 `;
 
 export default Feature;
