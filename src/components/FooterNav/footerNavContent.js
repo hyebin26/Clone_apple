@@ -57,7 +57,7 @@ const contentEighth = [
   "Apple 연락처",
 ];
 
-const footerContents = {
+const footerNavContent = {
   contentFirst,
   contentSecond,
   contentThirdth,
@@ -68,4 +68,4 @@ const footerContents = {
   contentEighth,
 };
 
-export default footerContents;
+export default footerNavContent;

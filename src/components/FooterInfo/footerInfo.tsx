@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FooterLink from "../FooterLink/footerLink";
 import theme from "src/styles/theme";
 
-const FeatureInfo = () => {
+const FooterInfo = () => {
   return (
     <FooterInfoSection>
       <div>Copyright @ 2022 Apple Inc. 모든 권리 보유.</div>
@@ -75,4 +75,4 @@ const FooterInfoSection = styled.section`
   justify-content: space-between;
 `;
 
-export default FeatureInfo;
+export default FooterInfo;
