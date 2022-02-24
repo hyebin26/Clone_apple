@@ -23,6 +23,7 @@ const footerColor = {
   titleColor: "#1d1d1f",
   linkColor: "#424245",
   titleColorHover: "#000",
+  blueLinkColor: "#06c",
 };
 
 const containerSize = {
