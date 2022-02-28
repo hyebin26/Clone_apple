@@ -3,7 +3,7 @@ import styled from "styled-components";
 import FooterNav from "../FooterNav/footerNav";
 import FooterInfo from "../FooterInfo/footerInfo";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <FooterContainer>
       <FooterWrapper>
@@ -27,10 +27,10 @@ const Footer = () => {
       </FooterWrapper>
     </FooterContainer>
   );
-};
+}
 
 const FooterWrapper = styled.div`
-  width: 60rem;
+  width: ${(props) => props.theme.containerSize.footerWrapperLarge};
   margin: 0 auto;
 `;
 
@@ -48,5 +48,3 @@ const FooterContainer = styled.footer`
 const FooterPromotionSection = styled.section`
   padding-bottom: 0.5rem;
 `;
-
-export default Footer;

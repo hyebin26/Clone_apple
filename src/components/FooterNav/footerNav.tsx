@@ -1,19 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import FooterLink from "../FooterLink/footerLink";
 import theme from "../../styles/theme";
+import LinkText from "../LinkText/linkText";
 import footerNavContent from "./footerNavContent";
+import FooterNavListWrapper from "./FooterNavListWrapper/footerNavListWrapper";
 
-type ListProps = {
-  text: string;
-};
-
-type ListWrapperProps = {
-  content: string[];
-  category: string;
-};
-
-const FooterNav = () => {
+export default function FooterNav() {
   return (
     <FooterNavContainer>
       <FooterNavWrapper>
@@ -60,41 +52,24 @@ const FooterNav = () => {
       </FooterNavWrapper>
       <FooterNavSupport>
         다양한 쇼핑 방법:{" "}
-        <FooterLink
+        <LinkText
           text="Apple Store를 방문"
           color={theme.footerColor.blueLinkColor}
           to="/"
+          size="xsmall"
         />
         하거나 ,
-        <FooterLink
+        <LinkText
           text="리셀러"
           color={theme.footerColor.blueLinkColor}
           to="/"
+          size="xsmall"
         />
         를 찾아보거나, 000-000-0000번으로 전화하세요.
       </FooterNavSupport>
     </FooterNavContainer>
   );
-};
-
-const FooterNavListWrapper = ({ content, category }: ListWrapperProps) => {
-  return (
-    <FooterNavListUl>
-      <FooterNavCategory>{category}</FooterNavCategory>
-      {content.map((item, idx) => (
-        <FooterNavList text={item} key={idx} />
-      ))}
-    </FooterNavListUl>
-  );
-};
-
-const FooterNavList = ({ text }: ListProps) => {
-  return (
-    <FooterLinkList>
-      <FooterLink to="/" text={text} color={theme.footerColor.textColor} />
-    </FooterLinkList>
-  );
-};
+}
 
 const FooterNavContainer = styled.section`
   display: flex;
@@ -105,16 +80,6 @@ const FooterNavContainer = styled.section`
   padding-bottom: 3rem;
 `;
 
-const FooterNavListUl = styled.ul`
-  flex: 0 0 20%;
-  letter-spacing: 0.3px;
-`;
-
-const FooterNavCategory = styled.li`
-  font-size: 0.6rem;
-  padding-top: 0.5rem;
-`;
-
 const FooterNavSupport = styled.p`
   position: absolute;
   bottom: 7px;
@@ -122,12 +87,6 @@ const FooterNavSupport = styled.p`
   color: ${(props) => props.theme.footerColor.textColor};
 `;
 
-const FooterLinkList = styled.li`
-  padding: 0.1rem 0;
-`;
-
 const FooterNavWrapper = styled.div`
   flex: 0 0 20%;
 `;
-
-export default FooterNav;
