@@ -1,8 +1,13 @@
 const fontSize = {
-  small: "0.7rem",
   largeH2: "3rem",
   largeH3: "2rem",
+  xlarge: "1.3rem",
+  middle: "0.9rem",
+  small: "0.7rem",
+  xsmall: "0.6rem",
+  large: "1.1rem",
 };
+
 const colors = {
   white: "#cacaca",
   whiteHover: "#f5f5f7",
@@ -28,7 +33,9 @@ const footerColor = {
 
 const containerSize = {
   navHeight: "2.6rem",
+  navWidthLarge: "63rem",
   featureTextLarge: "30rem",
+  footerWrapperLarge: "60rem",
 };
 
 const imageHeights = {

@@ -28,7 +28,7 @@ const navContents: NavContentType[] = [
   { id: 12, content: "장바구니", image: bag, to: "/" },
 ];
 
-const Nav = () => {
+export default function Nav() {
   return (
     <NavContainer>
       <NavListWrapper>
@@ -38,7 +38,7 @@ const Nav = () => {
       </NavListWrapper>
     </NavContainer>
   );
-};
+}
 
 function NavLink({ navContent }: { navContent: NavContentType }) {
   return (
@@ -77,6 +77,8 @@ const NavListWrapper = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  width: ${(props) => props.theme.containerSize.navWidthLarge};
+  margin: 0 auto;
 `;
 
 const NavList = styled.li`
@@ -89,5 +91,3 @@ const NavList = styled.li`
     }
   }
 `;
-
-export default Nav;

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 
 const ShopOnline = () => {
   return (
