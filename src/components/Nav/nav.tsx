@@ -1,62 +1,86 @@
-import React from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "@icons/logo.svg";
-import search from "@icons/search.svg";
-import bag from "@icons/bag.svg";
+import { NAVCONTENTS, MEDIAQUERYCONTENTS } from "./content";
+import theme from "src/styles/theme";
+import Hambuger from "./hambuger/hambuger";
+import HambugerNavList from "./hanbugerNavList/hambugerNavList";
 
-type NavContentType = {
-  content?: string;
-  id: number;
-  to?: string;
-  image?: string;
+type NavListProps = {
+  navContent: {
+    content: string | ReactElement;
+    id: number;
+    to: string;
+    image?: string;
+  };
+  onClickHambuger?: () => void;
 };
 
-const navContents: NavContentType[] = [
-  { id: 0, content: "logo", image: logo, to: "/" },
-  { id: 1, content: "스토어", to: "/" },
-  { id: 2, content: "Mac", to: "/" },
-  { id: 3, content: "iPad", to: "/" },
-  { id: 4, content: "iPhone", to: "/" },
-  { id: 5, content: "Watch", to: "/" },
-  { id: 6, content: "AirPods", to: "/" },
-  { id: 7, content: "TV 및 홈", to: "/" },
-  { id: 8, content: "Apple 독점 제공", to: "/" },
-  { id: 9, content: "액세서리", to: "/" },
-  { id: 10, content: "고객지원", to: "/" },
-  { id: 11, content: "검색", image: search, to: "/" },
-  { id: 12, content: "장바구니", image: bag, to: "/" },
-];
+const matchesMediaQuery = () => {
+  const matchQuery = window.matchMedia(
+    `screen and (max-width:${theme.devices.hambuger})`
+  );
+  return matchQuery;
+};
 
 export default function Nav() {
+  const [mediaQuery, setMediaQuery] = useState(matchesMediaQuery().matches);
+  const [isShowedHambuger, setIsShowedHambuger] = useState(false);
+  const onClickHambuger = () => {
+    setIsShowedHambuger(!isShowedHambuger);
+  };
+
+  useEffect(() => {
+    const mql = matchesMediaQuery();
+    mql.addEventListener("change", (e) => {
+      setMediaQuery(e.matches);
+    });
+  }, []);
   return (
-    <NavContainer>
+    <NavContainer isShowedHambuger={isShowedHambuger}>
       <NavListWrapper>
-        {navContents.map((navContent) => (
-          <NavLink navContent={navContent} key={navContent.id} />
-        ))}
+        {!mediaQuery &&
+          NAVCONTENTS.map((navContent) => (
+            <NavList navContent={navContent} key={navContent.id} />
+          ))}
+        {mediaQuery &&
+          MEDIAQUERYCONTENTS.map((navContent) => (
+            <NavList
+              navContent={navContent}
+              key={navContent.id}
+              onClickHambuger={onClickHambuger}
+            />
+          ))}
       </NavListWrapper>
+      {<HambugerNavList isShowedHambuger={isShowedHambuger} />}
     </NavContainer>
   );
 }
 
-function NavLink({ navContent }: { navContent: NavContentType }) {
+function NavList({ navContent, onClickHambuger }: NavListProps) {
+  const clickHambuger = () => {
+    onClickHambuger && onClickHambuger();
+  };
   return (
-    <NavList>
-      <Link to="/">
+    <StyledNavList>
+      <Link to="/" onClick={clickHambuger}>
         {navContent.image ? (
-          <NavIcons src={navContent.image} alt={navContent.content} />
+          <NavIcons src={navContent.image} />
         ) : (
           navContent.content
         )}
       </Link>
-    </NavList>
+    </StyledNavList>
   );
 }
 
-const NavContainer = styled.nav`
+const NavContainer = styled.nav<{ isShowedHambuger: boolean }>`
   height: ${(props) => props.theme.containerSize.navHeight};
-  background: ${(props) => props.theme.colors.darkGrey};
+  transition: 0.6s background ease-in-out;
+  background: ${(props) =>
+    props.isShowedHambuger
+      ? props.theme.colors.black
+      : props.theme.colors.darkGrey};
   top: 0;
   position: sticky;
   z-index: 999;
@@ -70,6 +94,10 @@ const NavIcons = styled.img`
   &:hover {
     filter: ${(props) => props.theme.colors.whiteImageHover};
   }
+  @media only screen and (max-width: ${({ theme }) => theme.devices.hambuger}) {
+    width: 18px;
+    height: 18px;
+  }
 `;
 
 const NavListWrapper = styled.ul`
@@ -79,9 +107,14 @@ const NavListWrapper = styled.ul`
   justify-content: space-around;
   width: ${(props) => props.theme.containerSize.navWidthLarge};
   margin: 0 auto;
+  @media only screen and (max-width: ${({ theme }) => theme.devices.hambuger}) {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+  }
 `;
 
-const NavList = styled.li`
+const StyledNavList = styled.li`
   font-size: ${(props) => props.theme.fontSize.small};
   a {
     transition: 0.3s color;

@@ -16,10 +16,14 @@ const colors = {
   whiteImageHover:
     "invert(90%) sepia(0%) saturate(46%) hue-rotate(306deg)brightness(107%) contrast(94%)",
   darkGrey: "#333333",
+  lightBlack: "#1d1d1f",
+  darkGreyImage:
+    "invert(38%) sepia(5%) saturate(268%) hue-rotate(202deg) brightness(93%) contrast(100%)",
   blue: "#4f94da",
   linkWhite: "#fbfcfc",
   pink: "#e9d4d1",
   orange: "#bf4800",
+  black: "#000000",
 };
 const footerColor = {
   background: "#f5f5f7",
@@ -36,6 +40,8 @@ const containerSize = {
   navWidthLarge: "63rem",
   featureTextLarge: "30rem",
   footerWrapperLarge: "60rem",
+  containerLarge: "30rem",
+  containerMiddle: "36rem",
 };
 
 const imageHeights = {
@@ -50,6 +56,7 @@ const margins = {};
 const devices = {
   medium: "1068px",
   small: "734px",
+  hambuger: "832px",
 };
 
 const theme = {
